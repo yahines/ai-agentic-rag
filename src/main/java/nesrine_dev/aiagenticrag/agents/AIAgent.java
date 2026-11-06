@@ -1,5 +1,6 @@
 package nesrine_dev.aiagenticrag.agents;
 
+import nesrine_dev.aiagenticrag.tools.AgentTools;
 import org.springframework.ai.chat.client.ChatClient;
 
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
@@ -13,11 +14,15 @@ import reactor.core.publisher.Flux;
 public class AIAgent {
     private ChatClient chatClient;
 
-
-    public AIAgent(ChatClient.Builder chatClient, ChatMemory chatMemory) {
+    public AIAgent(ChatClient.Builder chatClient,
+                   ChatMemory chatMemory,
+                   AgentTools agentTools,
+                   SimpleVectorStore vectorStore) {
         this.chatClient = chatClient
                 .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
                 .defaultAdvisors(new SimpleLoggerAdvisor())
+                .defaultTools(agentTools)
+                .defaultAdvisors(new QuestionAnswerAdvisor(vectorStore))
                 .build();
     }
 

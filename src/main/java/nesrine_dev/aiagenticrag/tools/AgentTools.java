@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AgentTools {
 
-    @Tool(description = "Get infos about an employee")
+    @Tool(description = "Get informations about an employee (name, salary, seniority)")
     public EmployeeInfo getEmployeeInfo(
             @ToolParam(description = "Employee Name") String employeeName){
         return new EmployeeInfo(

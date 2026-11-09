@@ -23,7 +23,7 @@ public class AIAgent {
                 .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
                 .defaultAdvisors(new SimpleLoggerAdvisor())
                 .defaultTools(agentTools)
-                .defaultAdvisors(QuestionAnswerAdvisor.builder(vectorStore).build())
+                //.defaultAdvisors(QuestionAnswerAdvisor.builder(vectorStore).build())
                 .build();
     }
 
